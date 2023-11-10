@@ -1,4 +1,4 @@
-const authenticateUtil = require('utils/authenticate');
+const authenticateUtil = require('../utils/authenticate');
 
 module.exports = async (req, res, next) => {
     const accessToken = req.headers['authorization']; // req.headers['x-access-token'];

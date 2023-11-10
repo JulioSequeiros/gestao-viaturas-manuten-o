@@ -1,5 +1,6 @@
 const marcacoesRouter = require('express').Router();
 const controller = require('../controllers/marcacao');
+const authMiddleware = require('../middlewares/auth');
 
 //use auth middleware
 marcacoesRouter.use(authMiddleware);

@@ -1,5 +1,6 @@
 const manutencoesRouter = require('express').Router();
 const controller = require('../controllers/manutencao');
+const authMiddleware = require('../middlewares/auth');
 
 //use auth middleware
 manutencoesRouter.use(authMiddleware);

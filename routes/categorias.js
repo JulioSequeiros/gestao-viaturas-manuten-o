@@ -1,5 +1,6 @@
 const categoriasRouter = require('express').Router();
 const controller = require('../controllers/categoria');
+const authMiddleware = require('../middlewares/auth');
 
 //use auth middleware
 categoriasRouter.use(authMiddleware);

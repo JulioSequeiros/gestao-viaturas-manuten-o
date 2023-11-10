@@ -1,5 +1,6 @@
 const viaturasRouter = require('express').Router();
 const controller = require('../controllers/viatura');
+const authMiddleware = require('../middlewares/auth');
 
 //use auth middleware
 viaturasRouter.use(authMiddleware);
