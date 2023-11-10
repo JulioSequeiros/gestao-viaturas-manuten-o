@@ -7,7 +7,6 @@ const viaturasRouter = require('./viaturas');
 const authRouter = require('./auth');
 
 
-
 router.use('/categorias', categoriasRouter);
 router.use('/manutencoes', manutencoesRouter);
 router.use('/marcacoes', marcacoesRouter);

@@ -1,6 +1,8 @@
 const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
 
+//use auth middleware
+studentRouter.use(authMiddleware);
 
 exports.getById = async (req, res) => {
     const id = req.params.id;

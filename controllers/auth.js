@@ -7,7 +7,7 @@ const prisma = new PrismaClient();
 exports.signin = async (req, res) => {
     try {
         const { email, password } = req.body;
-        const user = await prisma.users.findUnique({
+        const user = await prisma.utilizador.findUnique({
             where: {
                 email: email,
             },
@@ -36,7 +36,7 @@ exports.signup = async (req, res) => {
     try {
         const { name, email, password, isAdmin } = req.body;
 
-        const existingUser = await prisma.users.findUnique({
+        const existingUser = await prisma.utilizador.findUnique({
             where: {
                 email: email,
             },
@@ -46,7 +46,7 @@ exports.signup = async (req, res) => {
             return res.status(400).json({ msg: 'User with this email already exists' });
         }
 
-        const newUser = await prisma.users.create({
+        const newUser = await prisma.utilizador.create({
             data: {
                 email: email,
                 name: name,
