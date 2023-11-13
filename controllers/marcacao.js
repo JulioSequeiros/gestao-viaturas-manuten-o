@@ -4,7 +4,7 @@ const prisma = new PrismaClient();
 exports.getById = async (req, res) => {
     const id = req.params.id;
     try {
-        const response = await prisma.marcacoes.findUnique({
+        const response = await prisma.marcacao.findUnique({
             where: {
                 id: id,
             },
@@ -22,7 +22,7 @@ exports.getById = async (req, res) => {
 exports.create = async (req, res) => {
     const { id,data,descricao} = req.body;
     try {
-        const marcacao = await prisma.marcacoes.create({
+        const marcacao = await prisma.marcacao.create({
             data: {
                 id: id,
                 descricao: descricao,
@@ -38,7 +38,7 @@ exports.create = async (req, res) => {
 exports.update = async (req, res) => {
     const { id,descricao,data} = req.body;
     try {
-        const marcacao = await prisma.marcacoes.update({
+        const marcacao = await prisma.marcacao.update({
             where: {
                 id: id,
             },
@@ -57,7 +57,7 @@ exports.update = async (req, res) => {
 exports.delete = async (req, res) => {
     const id = req.params.id;
     try {
-        await prisma.marcacoes.delete({
+        await prisma.marcacao.delete({
             where: {
                 id: id,
             },

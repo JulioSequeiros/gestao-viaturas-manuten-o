@@ -1,10 +1,11 @@
 const { PrismaClient } = require('@prisma/client');
+const bcrypt = require("bcryptjs");
 const prisma = new PrismaClient();
 
 exports.update = async (req, res) => {
     const { name,id } = req.body;
     try {
-        const categoria = await prisma.utilizador.update({
+        const users = await prisma.utilizador.update({
             where: {
                 id: id,
             },
@@ -12,7 +13,7 @@ exports.update = async (req, res) => {
                 name: name,
             },
         });
-        res.status(200).json(categoria);
+        res.status(200).json(users);
     } catch (error) {
         res.status(400).json({ error: 'Bad Request', msg: error.message });
     }
@@ -21,7 +22,7 @@ exports.update = async (req, res) => {
 exports.update = async (req, res) => {
     const { email,id } = req.body;
     try {
-        const categoria = await prisma.utilizador.update({
+        const users = await prisma.utilizador.update({
             where: {
                 id: id,
             },
@@ -29,7 +30,7 @@ exports.update = async (req, res) => {
                 email: email,
             },
         });
-        res.status(200).json(categoria);
+        res.status(200).json(users);
     } catch (error) {
         res.status(400).json({ error: 'Bad Request', msg: error.message });
     }
@@ -38,15 +39,15 @@ exports.update = async (req, res) => {
 exports.update = async (req, res) => {
     const { password,id } = req.body;
     try {
-        const categoria = await prisma.utilizador.update({
+        const users = await prisma.utilizador.update({
             where: {
                 id: id,
             },
             data: {
-                password: password,
+                password: bcrypt.hashSync(password, 8),
             },
         });
-        res.status(200).json(categoria);
+        res.status(200).json(users);
     } catch (error) {
         res.status(400).json({ error: 'Bad Request', msg: error.message });
     }

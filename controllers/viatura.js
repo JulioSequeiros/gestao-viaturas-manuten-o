@@ -4,7 +4,7 @@ const prisma = new PrismaClient();
 exports.getById = async (req, res) => {
     const id = req.params.id;
     try {
-        const response = await prisma.viaturas.findUnique({
+        const response = await prisma.viatura.findUnique({
             where: {
                 id: id,
             },
@@ -22,7 +22,7 @@ exports.getById = async (req, res) => {
 exports.create = async (req, res) => {
     const { id,modelo,ano,proprietario} = req.body;
     try {
-        const viatura = await prisma.viaturas.create({
+        const viatura = await prisma.viatura.create({
             data: {
                 id: id,
                 modelo: modelo,
@@ -39,7 +39,7 @@ exports.create = async (req, res) => {
 exports.update = async (req, res) => {
     const { id,modelo,ano,proprietario} = req.body;
     try {
-        const viatura = await prisma.viaturas.update({
+        const viatura = await prisma.viatura.update({
             where: {
                 id: id,
             },
@@ -59,7 +59,7 @@ exports.update = async (req, res) => {
 exports.delete = async (req, res) => {
     const id = req.params.id;
     try {
-        await prisma.viaturas.delete({
+        await prisma.viatura.delete({
             where: {
                 id: id,
             },

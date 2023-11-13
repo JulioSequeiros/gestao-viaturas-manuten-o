@@ -4,7 +4,7 @@ const prisma = new PrismaClient();
 exports.getById = async (req, res) => {
     const id = req.params.id;
     try {
-        const response = await prisma.categorias.findUnique({
+        const response = await prisma.categoria.findUnique({
             where: {
                 id: id,
             },
@@ -22,7 +22,7 @@ exports.getById = async (req, res) => {
 exports.create = async (req, res) => {
     const { name, id } = req.body;
     try {
-        const categoria = await prisma.categorias.create({
+        const categoria = await prisma.categoria.create({
             data: {
                 id: id,
                 name: name,
@@ -37,7 +37,7 @@ exports.create = async (req, res) => {
 exports.update = async (req, res) => {
     const { name,id } = req.body;
     try {
-        const categoria = await prisma.categorias.update({
+        const categoria = await prisma.categoria.update({
             where: {
                 id: id,
             },
@@ -54,7 +54,7 @@ exports.update = async (req, res) => {
 exports.delete = async (req, res) => {
     const id = req.params.id;
     try {
-        await prisma.categorias.delete({
+        await prisma.categoria.delete({
             where: {
                 id: id,
             },

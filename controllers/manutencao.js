@@ -4,7 +4,7 @@ const prisma = new PrismaClient();
 exports.getById = async (req, res) => {
     const id = req.params.id;
     try {
-        const response = await prisma.manutencoes.findUnique({
+        const response = await prisma.manutencao.findUnique({
             where: {
                 id: id,
             },
@@ -22,7 +22,7 @@ exports.getById = async (req, res) => {
 exports.create = async (req, res) => {
     const { id,descricao,data,custo} = req.body;
     try {
-        const manutencao = await prisma.manutencoes.create({
+        const manutencao = await prisma.manutencao.create({
             data: {
                 id: id,
                 descricao: descricao,
@@ -39,7 +39,7 @@ exports.create = async (req, res) => {
 exports.update = async (req, res) => {
     const { id,descricao,data,custo } = req.body;
     try {
-        const manutencao = await prisma.manutencoes.update({
+        const manutencao = await prisma.manutencao.update({
             where: {
                 id: id,
             },
@@ -59,7 +59,7 @@ exports.update = async (req, res) => {
 exports.delete = async (req, res) => {
     const id = req.params.id;
     try {
-        await prisma.manutencoes.delete({
+        await prisma.manutencao.delete({
             where: {
                 id: id,
             },
