@@ -8,6 +8,10 @@ exports.getById = async (req, res) => {
             where: {
                 id: id,
             },
+            include: {
+                Marcacao: true,
+                Manutencoes: true,
+            },
         });
         if (response) {
             res.status(200).json(viatura);
