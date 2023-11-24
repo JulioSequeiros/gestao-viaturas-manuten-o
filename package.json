@@ -3,6 +3,13 @@
   "version": "1.0.0",
   "description": "Educational project",
   "main": "server.js",
+  "scripts": {
+    "postinstall": "prisma generate && prisma migrate deploy",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js",
+    "build": "node server.js"
+  },
+
   "builds": [
     {
       "src": "server.js",
@@ -15,15 +22,11 @@
       "dest": "server.js"
     }
   ],
-  "scripts": {
-    "postinstall": "prisma generate && prisma migrate deploy",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon server.js",
-    "build": "node server.js"
-  },
+
   "prisma": {
     "schema": "data/prisma/schema.prisma"
   },
+
   "author": "Júlio de Sequeiros, Duarte Gomes",
   "license": "ISC",
   "dependencies": {
