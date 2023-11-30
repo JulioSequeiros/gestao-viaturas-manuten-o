@@ -6,15 +6,11 @@ exports.getById = async (req, res) => {
     try {
         const response = await prisma.viatura.findUnique({
             where: {
-                id: id,
-            },
-            include: {
-                Marcacao: true,
-                Manutencoes: true,
+                id: Number(id),
             },
         });
         if (response) {
-            res.status(200).json(viatura);
+            res.status(200).json(response);
         } else {
             res.status(404).json({ error: 'Not Found', msg: 'Course not found' });
         }
@@ -24,14 +20,13 @@ exports.getById = async (req, res) => {
 };
 
 exports.create = async (req, res) => {
-    const { id,modelo,ano,proprietario} = req.body;
+    const { modelo,ano,proprietarioId} = req.body;
     try {
         const viatura = await prisma.viatura.create({
             data: {
-                id: id,
                 modelo: modelo,
                 ano: ano,
-                proprietario: proprietario
+                proprietarioId: Number(proprietarioId)
             },
         });
         res.status(201).json(viatura);
@@ -41,16 +36,16 @@ exports.create = async (req, res) => {
 };
 
 exports.update = async (req, res) => {
-    const { id,modelo,ano,proprietario} = req.body;
+    const {modelo,ano} = req.body;
+    const id = req.params.id
     try {
         const viatura = await prisma.viatura.update({
             where: {
-                id: id,
+                id: Number(id),
             },
             data: {
                 modelo: modelo,
-                ano: ano,
-                proprietario: proprietario
+                ano: ano
             },
         });
         res.status(200).json(viatura);

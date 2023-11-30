@@ -6,10 +6,7 @@ exports.getById = async (req, res) => {
     try {
         const response = await prisma.categoria.findUnique({
             where: {
-                id: id,
-            },
-            include: {
-                manutencoes: true,
+                id: Number(id),
             },
         });
         if (response) {
@@ -23,12 +20,11 @@ exports.getById = async (req, res) => {
 };
 
 exports.create = async (req, res) => {
-    const { name, id } = req.body;
+    const { nome } = req.body;
     try {
         const categoria = await prisma.categoria.create({
             data: {
-                id: id,
-                name: name,
+                nome: nome,
             },
         });
         res.status(201).json(categoria);
@@ -38,14 +34,15 @@ exports.create = async (req, res) => {
 };
 
 exports.update = async (req, res) => {
-    const { name,id } = req.body;
+    const { nome } = req.body;
+    const id = req.params.id;
     try {
         const categoria = await prisma.categoria.update({
             where: {
-                id: id,
+                id: Number(id),
             },
             data: {
-                name: name,
+                nome: nome,
             },
         });
         res.status(200).json(categoria);
@@ -59,7 +56,7 @@ exports.delete = async (req, res) => {
     try {
         await prisma.categoria.delete({
             where: {
-                id: id,
+                id: Number(id),
             },
         });
         res.status(204).send(); // Using 204 No Content for successful deletion

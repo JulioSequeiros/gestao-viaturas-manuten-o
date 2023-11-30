@@ -5,9 +5,8 @@ const authMiddleware = require('../middlewares/auth');
 //use auth middleware
 usersRouter.use(authMiddleware);
 
-usersRouter.get('/:number', controller.getById); //update
-usersRouter.put('/update', controller.update); //update
-usersRouter.put('/update', controller.update); //update
-usersRouter.put('/update', controller.update); //update
+usersRouter.put('/update/:id', controller.update); //update
+usersRouter.put('/update/:id', controller.update); //update
+usersRouter.put('/update/:id', controller.update); //update
 
 module.exports = usersRouter;

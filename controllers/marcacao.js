@@ -6,10 +6,7 @@ exports.getById = async (req, res) => {
     try {
         const response = await prisma.marcacao.findUnique({
             where: {
-                id: id,
-            },
-            include: {
-                viatura: true,
+                id: Number(id),
             },
         });
         if (response) {
@@ -23,13 +20,13 @@ exports.getById = async (req, res) => {
 };
 
 exports.create = async (req, res) => {
-    const { id,data,descricao} = req.body;
+    const { data,descricao,viaturaid} = req.body;
     try {
         const marcacao = await prisma.marcacao.create({
             data: {
-                id: id,
                 descricao: descricao,
-                data: data
+                data: data,
+                viaturaid:Number(viaturaid)
             },
         });
         res.status(201).json(marcacao);
@@ -39,11 +36,12 @@ exports.create = async (req, res) => {
 };
 
 exports.update = async (req, res) => {
-    const { id,descricao,data} = req.body;
+    const { descricao,data } = req.body;
+    const id = req.params.id;
     try {
         const marcacao = await prisma.marcacao.update({
             where: {
-                id: id,
+                id: Number(id),
             },
             data: {
                 descricao: descricao,
@@ -62,7 +60,7 @@ exports.delete = async (req, res) => {
     try {
         await prisma.marcacao.delete({
             where: {
-                id: id,
+                id: Number(id),
             },
         });
         res.status(204).send(); // Using 204 No Content for successful deletion
