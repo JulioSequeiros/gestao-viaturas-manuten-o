@@ -25,7 +25,7 @@ exports.create = async (req, res) => {
         const manutencao = await prisma.manutencao.create({
             data: {
                 descricao: descricao,
-                datas: data,
+                data: data,
                 custo: custo,
                 categoriaId: Number(categoriaId),
                 viaturaId: Number(viaturaId)
