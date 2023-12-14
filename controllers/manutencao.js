@@ -1,4 +1,5 @@
 const { PrismaClient } = require('@prisma/client');
+const moment = require("moment/moment");
 const prisma = new PrismaClient();
 
 exports.getById = async (req, res) => {
@@ -21,11 +22,14 @@ exports.getById = async (req, res) => {
 
 exports.create = async (req, res) => {
     const { descricao,data,custo,categoriaId,viaturaId} = req.body;
+
+    console.log(moment(data, "DD-MM-YYYY HH:mm"));
+
     try {
         const manutencao = await prisma.manutencao.create({
             data: {
                 descricao: descricao,
-                data: data,
+                data: moment(data, "DD-MM-YYYY HH:mm"),
                 custo: custo,
                 categoriaId: Number(categoriaId),
                 viaturaId: Number(viaturaId)
@@ -47,7 +51,7 @@ exports.update = async (req, res) => {
             },
             data: {
                 descricao: descricao,
-                datas: data,
+                datas: moment(data, "DD-MM-YYYY HH:mm"),
                 custo: custo
             },
         });
