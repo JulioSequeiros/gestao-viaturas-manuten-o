@@ -20,11 +20,12 @@ exports.getById = async (req, res) => {
 };
 
 exports.create = async (req, res) => {
-    const { modelo,ano,proprietarioId} = req.body;
+    const { modelo,marca,ano,proprietarioId} = req.body;
     try {
         const viatura = await prisma.viatura.create({
             data: {
                 modelo: modelo,
+                marca: marca,
                 ano: ano,
                 proprietarioId: Number(proprietarioId)
             },
@@ -36,7 +37,7 @@ exports.create = async (req, res) => {
 };
 
 exports.update = async (req, res) => {
-    const {modelo,ano} = req.body;
+    const {modelo,marca,ano} = req.body;
     const id = req.params.id
     try {
         const viatura = await prisma.viatura.update({
@@ -45,6 +46,7 @@ exports.update = async (req, res) => {
             },
             data: {
                 modelo: modelo,
+                marca: marca,
                 ano: ano
             },
         });

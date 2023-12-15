@@ -18,6 +18,7 @@ model Utilizador {
 
 model Viatura {
   id             Int          @id @default(autoincrement())
+  marca          String
   modelo         String
   ano            Int
   proprietario   Utilizador   @relation(fields: [proprietarioId], references: [id])
