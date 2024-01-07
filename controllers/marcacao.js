@@ -2,6 +2,14 @@ const { PrismaClient } = require('@prisma/client');
 const moment = require("moment");
 const prisma = new PrismaClient();
 
+exports.getAll = async (req, res) => {
+    try {
+        const response = await prisma.marcacao.findMany();
+        res.status(200).json(response);
+    } catch (error) {
+        res.status(500).json({ error: 'Internal Server Error', msg: error.message });
+    }
+};
 
 exports.getById = async (req, res) => {
     const id = req.params.id;
