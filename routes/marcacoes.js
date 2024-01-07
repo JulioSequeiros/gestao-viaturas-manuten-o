@@ -5,7 +5,7 @@ const authMiddleware = require('../middlewares/auth');
 //use auth middleware
 marcacoesRouter.use(authMiddleware);
 
-marcacoesRouter().get('/', controller.getAll);
+marcacoesRouter.get('/', controller.getAll);
 marcacoesRouter.get('/:id', controller.getById); //ler id de marcaçoes
 marcacoesRouter.post('/create', controller.create); //create new marcaçoes
 marcacoesRouter.put('/update/:id', controller.update); //update marcaçoes

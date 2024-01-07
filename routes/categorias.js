@@ -5,7 +5,7 @@ const authMiddleware = require('../middlewares/auth');
 //use auth middleware
 categoriasRouter.use(authMiddleware);
 
-categoriasRouter().get('/', controller.getAll);
+categoriasRouter.get('/', controller.getAll);
 categoriasRouter.get('/:id', controller.getById); //id categoria
 categoriasRouter.post('/create', controller.create); //create new categoria
 categoriasRouter.put('/update/:id', controller.update); //update categoria

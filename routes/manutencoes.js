@@ -5,7 +5,7 @@ const authMiddleware = require('../middlewares/auth');
 //use auth middleware
 manutencoesRouter.use(authMiddleware);
 
-manutencoesRouter().get('/', controller.getAll);
+manutencoesRouter.get('/', controller.getAll);
 manutencoesRouter.get('/:id', controller.getById); //ler id de manutençoes
 manutencoesRouter.post('/create', controller.create); //create new manutençoes
 manutencoesRouter.put('/update/:id', controller.update); //update manutençoes
