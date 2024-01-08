@@ -13,12 +13,12 @@ model Utilizador {
   email    String    @unique
   password String
   isAdmin  Boolean   @default(false)
-  viaturas Viatura[]  // relação inversa
+  viaturas Viatura[] // relação inversa
 }
 
 model Viatura {
   id             Int          @id @default(autoincrement())
-  marca          String
+  marca          String       @default("")
   modelo         String
   ano            Int
   proprietario   Utilizador   @relation(fields: [proprietarioId], references: [id])
@@ -51,5 +51,3 @@ model Marcacao {
   viatura   Viatura  @relation(fields: [viaturaId], references: [id])
   viaturaId Int
 }
-
-
