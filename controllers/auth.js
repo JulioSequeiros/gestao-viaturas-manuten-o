@@ -22,7 +22,7 @@ exports.signin = async (req, res) => {
                     name: user.name,
                     isAdmin: user.isAdmin,
                 });
-                return res.status(200).json({ name: user.name, token: accessToken });
+                return res.status(200).json({ name: user.name, token: accessToken, id: user.id   });
             }
         }
 
