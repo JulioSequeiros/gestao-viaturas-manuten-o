@@ -45,6 +45,8 @@ exports.create = async (req, res) => {
             },
         });
         res.status(201).json(viatura);
+
+
     } catch (error) {
         res.status(400).json({ error: 'Bad Request', msg: error.message });
     }
