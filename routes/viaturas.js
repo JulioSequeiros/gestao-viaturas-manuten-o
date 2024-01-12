@@ -6,6 +6,7 @@ const authMiddleware = require('../middlewares/auth');
 viaturasRouter.use(authMiddleware);
 
 viaturasRouter.get('/', controller.getAll);
+viaturasRouter.get('/owner/:ownerId', controller.getAllByOwnerId); //ler id de viaturas
 viaturasRouter.get('/:id', controller.getById); //ler id de viaturas
 viaturasRouter.post('/create', controller.create); //create new viaturas
 viaturasRouter.put('/update/:id', controller.update); //update viaturas
