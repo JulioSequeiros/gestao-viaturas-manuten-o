@@ -13,7 +13,7 @@ exports.getAll = async (req, res) => {
 
 exports.getAllByOwnerId = async (req, res) => {
     try {
-        const ownerId = req.params.ownerid;
+        const ownerId = req.params.id;
 
         const response = await prisma.viatura.findMany({include: {proprietario: true}, where : {proprietarioId : Number(ownerId)}});
         res.status(200).json(response);
