@@ -16,7 +16,7 @@ exports.getAllByOwnerId = async (req, res) => {
         const ownerId = req.params.id;
 
         const response = await prisma.viatura.findMany({ where : {proprietarioId : Number(ownerId)}, include: {proprietario: true}});
-        res.status(200).json(true);
+        res.status(200).json(response);
     } catch (error) {
         res.status(500).json({ error: 'Internal Server Error', msg: error.message });
     }
