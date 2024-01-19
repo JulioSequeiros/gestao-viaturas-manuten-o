@@ -4,7 +4,7 @@ const prisma = new PrismaClient();
 
 exports.getAll = async (req, res) => {
     try {
-        const response = await prisma.marcacao.findMany({include: {viatura: true}});
+        const response = await prisma.marcacao.findMany({include: {viatura: true, categoria: true}});
         res.status(200).json(response);
     } catch (error) {
         res.status(500).json({ error: 'Internal Server Error', msg: error.message });
@@ -30,7 +30,7 @@ exports.getById = async (req, res) => {
 };
 
 exports.create = async (req, res) => {
-    const { data,descricao,viaturaid} = req.body;
+    const { data,descricao,viaturaid,categoriaid} = req.body;
 
 
     try {
@@ -38,7 +38,8 @@ exports.create = async (req, res) => {
             data: {
                 descricao: descricao,
                 data: moment(data, "DD-MM-YYYY HH:mm"),
-                viaturaId:Number(viaturaid)
+                viaturaId:Number(viaturaid),
+                categoriaId:Number(categoriaid)
             },
         });
         res.status(201).json(marcacao);

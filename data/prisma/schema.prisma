@@ -13,7 +13,7 @@ model Utilizador {
   email    String    @unique
   password String
   isAdmin  Boolean   @default(false)
-  viaturas Viatura[] // relação inversa
+  viaturas Viatura[]
 }
 
 model Viatura {
@@ -32,6 +32,8 @@ model Manutencao {
   descricao   String
   data        DateTime
   custo       Float
+  marcacao    String    @relation(fields: [marcacao], references: [id])
+  marcacaoId  Int
   viatura     Viatura   @relation(fields: [viaturaId], references: [id])
   viaturaId   Int
   categoria   Categoria @relation(fields: [categoriaId], references: [id])
@@ -41,13 +43,17 @@ model Manutencao {
 model Categoria {
   id          Int          @id @default(autoincrement())
   nome        String
+  marcacao    Marcacao[]
   manutencoes Manutencao[]
 }
 
 model Marcacao {
-  id        Int      @id @default(autoincrement())
-  data      DateTime
-  descricao String
-  viatura   Viatura  @relation(fields: [viaturaId], references: [id])
-  viaturaId Int
+  id          Int          @id @default(autoincrement())
+  data        DateTime
+  descricao   String
+  categoria   String       @relation(fields: [categoriaId], references: [id])
+  categoriaId Int
+  viatura     Viatura      @relation(fields: [viaturaId], references: [id])
+  viaturaId   Int
+  manutencoes Manutencao[]
 }
