@@ -7,6 +7,7 @@ marcacoesRouter.use(authMiddleware);
 
 marcacoesRouter.get('/', controller.getAll);
 marcacoesRouter.get('/:id', controller.getById); //ler id de marcaçoes
+marcacoesRouter.get('categorias/:id', controller.getAll)
 marcacoesRouter.post('/create', controller.create); //create new marcaçoes
 marcacoesRouter.put('/update/:id', controller.update); //update marcaçoes
 marcacoesRouter.delete('/delete/:id', controller.delete); //delete marcaçoes

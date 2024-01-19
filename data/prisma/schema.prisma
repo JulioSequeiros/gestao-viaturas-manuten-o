@@ -32,7 +32,7 @@ model Manutencao {
   descricao   String
   data        DateTime
   custo       Float
-  marcacao    String    @relation(fields: [marcacao], references: [id])
+  marcacao    Marcacao  @relation(fields: [marcacaoId], references: [id])
   marcacaoId  Int
   viatura     Viatura   @relation(fields: [viaturaId], references: [id])
   viaturaId   Int
@@ -51,7 +51,7 @@ model Marcacao {
   id          Int          @id @default(autoincrement())
   data        DateTime
   descricao   String
-  categoria   String       @relation(fields: [categoriaId], references: [id])
+  categoria   Categoria    @relation(fields: [categoriaId], references: [id])
   categoriaId Int
   viatura     Viatura      @relation(fields: [viaturaId], references: [id])
   viaturaId   Int

@@ -31,8 +31,6 @@ exports.getById = async (req, res) => {
 
 exports.create = async (req, res) => {
     const { data,descricao,viaturaid,categoriaid} = req.body;
-
-
     try {
         const marcacao = await prisma.marcacao.create({
             data: {
