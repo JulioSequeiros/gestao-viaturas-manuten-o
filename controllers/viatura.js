@@ -88,7 +88,7 @@ exports.delete = async (req, res) => {
                 id: id,
             },
         });
-        res.status(204).send(); // Using 204 No Content for successful deletion
+        res.status(204).send();
     } catch (error) {
         res.status(400).json({ error: 'Bad Request', msg: error.message });
     }
