@@ -4,8 +4,10 @@ const prisma = new PrismaClient();
 
 exports.getAll = async (req, res) => {
     try {
-        const response = await prisma.marcacao.findMany({include: {viatura: true, categoria: true}});
+        const response = await prisma.marcacao.findMany({include: {viatura: true}});
+        const response2 = await prisma.marcacao.findMany({include: {categoria: true}});
         res.status(200).json(response);
+        res.status(200).json(response2);
     } catch (error) {
         res.status(500).json({ error: 'Internal Server Error', msg: error.message });
     }
