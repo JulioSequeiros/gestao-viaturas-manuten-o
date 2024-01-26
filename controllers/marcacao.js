@@ -32,14 +32,14 @@ exports.getById = async (req, res) => {
 };
 
 exports.create = async (req, res) => {
-    const { data,descricao,viaturaid,categoriaid} = req.body;
+    const { data,descricao,viaturaId,categoriaId} = req.body;
     try {
         const marcacao = await prisma.marcacao.create({
             data: {
                 descricao: descricao,
                 data: moment(data, "DD-MM-YYYY HH:mm"),
-                viaturaId:Number(viaturaid),
-                categoriaId:Number(categoriaid)
+                viaturaId:Number(viaturaId),
+                categoriaId:Number(categoriaId)
             },
         });
         res.status(201).json(marcacao);
@@ -49,7 +49,7 @@ exports.create = async (req, res) => {
 };
 
 exports.update = async (req, res) => {
-    const { descricao,data } = req.body;
+    const { descricao,data,viaturaId,categoriaId } = req.body;
     const id = req.params.id;
     try {
         const marcacao = await prisma.marcacao.update({
@@ -58,7 +58,9 @@ exports.update = async (req, res) => {
             },
             data: {
                 descricao: descricao,
-                data: moment(data, "DD-MM-YYYY HH:mm")
+                data: moment(data, "DD-MM-YYYY HH:mm"),
+                viaturaId: Number(viaturaId),
+                categoriaId: Number(categoriaId)
             },
         });
         res.status(200).json(marcacao);
